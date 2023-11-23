@@ -8,7 +8,12 @@ LDFLAGS= -o bin/$(NAME)
 SOURCES=$(wildcard src/*.c)
 OBJS:=$(patsubst src/%.c, bin/int/%.o, $(SOURCES))
 
-.PHONY: clean build run
+.PHONY: clean build run all init
+
+all: init build
+
+init:
+	git submodule init
 
 build: $(OBJS)
 	$(LD) $(LDFLAGS) $(LIBPATH) $(LIBS) $(OBJS)
