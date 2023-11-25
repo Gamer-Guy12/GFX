@@ -1,15 +1,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <stdio.h>
-
-
-void frame_callback(GLFWwindow* window, int width, int height) {
-	glViewport(0, 0, width, height);
-}
-
-void error_callback(int code, const char* value) {
-    glfwTerminate();
-}
+#include <callback.h>
+#include <loop.h>
 
 int main(void)
 {
@@ -62,15 +55,8 @@ int main(void)
     while (!glfwWindowShouldClose(window))
     {
 
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        /* Render here */
-        glClear(GL_COLOR_BUFFER_BIT);
+        loop(window);
 
-        /* Swap front and back buffers */
-        glfwSwapBuffers(window);
-
-        /* Poll for and process events */
-        glfwPollEvents();
     }
 
     glfwTerminate();
