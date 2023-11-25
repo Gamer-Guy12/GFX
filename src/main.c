@@ -3,22 +3,27 @@
 #include <stdio.h>
 #include <callback.h>
 #include <loop.h>
+#include <logger/logger.h>
+#include <logger/defaults.h>
 
 int main(void)
 {
 
+    bindLogger(&fileLog);
     GLFWwindow* window;
     int initResult;
     initResult = glfwInit();
+    logInfo("Test log");
+    logInfo("And another");
 
     /* Initialize the library */
     if (initResult == GL_FALSE) {
-        printf("Failed to initialize GLFW\n");
+        logError(-1, "Failed to initialize GLFW");
         return -1;
     } else if (initResult == GL_TRUE) {
-        printf("GLFW inited correctly\n");
+        logInfo("GLFW inited correctly");
     } else {
-        printf("GLFW init returned bogus result\n");
+        logError(-2, "GLFW init returned bogus result");
         return -2;
     }
 
@@ -35,7 +40,7 @@ int main(void)
     if (window == NULL)
     {
         glfwTerminate();
-        printf("Failed to create window\n");
+        logError(-3, "Failed to create window");
         return -3;
     }
 
@@ -43,7 +48,7 @@ int main(void)
     glfwMakeContextCurrent(window);
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-	    printf("Failed to initialize GLAD\n");
+	    logError(-4, "Failed to initialize GLAD");
 	    return -4;
     }
 

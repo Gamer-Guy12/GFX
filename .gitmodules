@@ -4,3 +4,6 @@
 [submodule "glfw"]
 	path = vendor/glfw
 	url = https://github.com/glfw/glfw
+[submodule "vendor/Logger"]
+	path = vendor/Logger
+	url = https://github.com/gamer-guy12/Logger
