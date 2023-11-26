@@ -5,6 +5,7 @@
 #include <loop.h>
 #include <logger/logger.h>
 #include <logger/defaults.h>
+#include <init.h>
 
 int main(void)
 {
@@ -13,8 +14,6 @@ int main(void)
     GLFWwindow* window;
     int initResult;
     initResult = glfwInit();
-    logInfo("Test log");
-    logInfo("And another");
 
     /* Initialize the library */
     if (initResult == GL_FALSE) {
@@ -55,6 +54,8 @@ int main(void)
     glViewport(0, 0, 800, 600);
     
     glfwSetFramebufferSizeCallback(window, frame_callback);
+
+    init();
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))

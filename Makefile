@@ -15,9 +15,11 @@ rebuild: clean build
 
 debug: clean $(OBJS)
 	$(LD) $(LDFLAGS) $(OBJS) -L$(LIBPATH) $(LIBS) $(DEBUGFLAGS) -DDEBUG
+	cp assets bin -r
 
 build: $(OBJS)
 	$(LD) $(LDFLAGS) $(OBJS) -L$(LIBPATH) $(LIBS) $(DEBUGFLAGS)
+	cp assets bin -r
 
 bin/int/%.o: src/%.c
 	$(CC) $(CFLAGS) $< -o bin/int/$*.o $(DEBUGFLAGS)
